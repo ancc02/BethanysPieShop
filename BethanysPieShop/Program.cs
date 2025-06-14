@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 var connectionString = builder.Configuration.GetConnectionString("BethanysPieShopDbContextConnection") ?? throw new InvalidOperationException("Connection string 'BethanysPieShopDbContextConnection' not found.");
 
 builder.Services.AddDbContext<BethanysPieShopDbContext>(options =>
@@ -40,6 +42,8 @@ builder.Services.AddDbContext<BethanysPieShopDbContext>(options => {
 //.AddEntityFrameworkStores<BethanysPieShopDbContext>();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 //app.MapGet("/", () => "Hello World!");
 if (app.Environment.IsDevelopment())
